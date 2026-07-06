@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>.:| Alpha-Beta Coding and Programming School :: Application Form Step 1 |:.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background: #f0f4f8;
+            color: #222;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+            border-bottom: 4px solid #c8960c;
+        }
+
+        .block_header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .logo {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo .brand-name {
+            color: #f5c842;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo .brand-sub {
+            color: #cfe0f4;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .logo .brand-contact {
+            color: #cfe0f4;
+            font-size: 11.5px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .logo .brand-contact a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .body_resize {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 10px 30px 10px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .left {
+            flex: 1 1 0%;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #1a3a6b;
+        }
+
+        .left-header {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .side {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .right {
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #c8960c;
+        }
+
+        .right h2 {
+            background: #c8960c;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #1a3a6b;
+        }
+
+        .right p {
+            padding: 8px 12px 4px 12px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .right p strong {
+            color: #1a3a6b;
+        }
+
+        .bg {
+            height: 1px;
+            background: #dde8f4;
+            margin: 2px 12px;
+        }
+
+        .info-messages {
+            color: #c00;
+        }
+
+        .footer {
+            background: #0d1f3c;
+            border-top: 3px solid #c8960c;
+            padding: 10px 0;
+            text-align: center;
+            color: #a0b8d8;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .clr {
+            clear: both;
+        }
+
+        .sec-head {
+            background: #c8960c;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 6px 14px;
+            margin: 16px 14px 0 14px;
+        }
+
+        .form-wrap {
+            padding: 10px 14px 4px 14px;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-table td {
+            padding: 6px 6px;
+            vertical-align: middle;
+        }
+
+        .form-table td.lbl {
+            text-align: right;
+            font-weight: bold;
+            color: #1a3a6b;
+            width: 170px;
+            font-size: 13px;
+        }
+
+        .finput {
+            border: 1px solid #7a9cc6;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .finput:focus {
+            border-color: #c8960c;
+        }
+
+        .finput-lg {
+            width: 340px;
+        }
+
+        .finput-md {
+            width: 220px;
+        }
+
+        .finput-sm {
+            width: 100px;
+        }
+
+        .ftextarea {
+            border: 1px solid #7a9cc6;
+            padding: 5px 7px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            outline: none;
+            width: 340px;
+            height: 60px;
+            resize: vertical;
+        }
+
+        .ftextarea:focus {
+            border-color: #c8960c;
+        }
+
+        .red-hint {
+            color: #c00;
+            font-weight: bold;
+            font-size: 12px;
+            margin-left: 6px;
+        }
+
+        .readonly-field {
+            background: #eef2f8;
+            border: 1px solid #b8cce4;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #1a3a6b;
+            font-weight: bold;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .utme-table {
+            width: 96%;
+            margin: 10px 14px;
+            border-collapse: collapse;
+        }
+
+        .utme-table th {
+            background: #1a3a6b;
+            color: #f5c842;
+            padding: 6px 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .utme-table th:first-child {
+            background: #c8960c;
+        }
+
+        .utme-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #dde8f4;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .utme-table td:first-child {
+            color: #1a3a6b;
+            font-weight: bold;
+            background: #f7fafd;
+        }
+
+        .utme-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .utme-table select,
+        .utme-table input {
+            border: 1px solid #7a9cc6;
+            padding: 3px 5px;
+            font-size: 12px;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .agg-row td {
+            background: #f0f4f8;
+            font-weight: bold;
+            color: #1a3a6b;
+        }
+
+        .submit-bar {
+            padding: 16px 14px;
+            border-top: 1px solid #dde8f4;
+            text-align: right;
+        }
+
+        .btn-submit {
+            background: #1a3a6b;
+            color: #f5c842;
+            border: none;
+            padding: 8px 30px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .btn-submit:hover {
+            background: #c8960c;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #888;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .btn-back:hover {
+            background: #555;
+        }
+
+        .err-msg {
+            background: #ffebee;
+            border: 1px solid #c62828;
+            color: #b71c1c;
+            padding: 8px 14px;
+            margin: 10px 14px;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .suc-msg {
+            background: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 8px 14px;
+            margin: 10px 14px;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .prog-note {
+            color: #c00;
+            font-size: 12px;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="block_header">
+                <div class="logo">
+                    <a href="application.html"><img
+                            src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                            alt="Alpha-Beta Coding and Programming School Logo" /></a>
+                    <div>
+                        <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                        <div class="brand-sub">Admissions Portal</div>
+                        <div class="brand-contact">
+                            Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                            Email: <a href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a>
+                            &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317">+234 704 236 6317</a>
+                            &nbsp;|&nbsp; Website: <a href="https://alpha-beta.org.ng/"
+                                target="_blank">alpha-beta.org.ng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:#f0f4f8;padding:0;">
+            <div class="body_resize">
+                <div class="left">
+                    <div class="left-header">
+                        NEW APPLICATION STEP 1 OF 2
+                    </div>
+
+
+                    <div id="err-msg" class="err-msg"></div>
+                    <div id="suc-msg" class="suc-msg"></div>
+
+                    <!-- SECTION: Personal Information -->
+                    <div class="sec-head">Personal Information</div>
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">UTME Reg. No.:</td>
+                                <td><input type="text" id="disp_reg" class="finput finput-lg" readonly
+                                        style="background:#eef2f8;color:#1a3a6b;font-weight:bold;cursor:not-allowed;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Full Name:</td>
+                                <td><input type="text" id="fullname" class="finput finput-lg"
+                                        placeholder="Surname First" /> <span class="red-hint">(Surname First)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Sex:</td>
+                                <td>
+                                    <label><input type="radio" name="sex" value="Male" /> Male</label>
+                                    &nbsp;&nbsp;
+                                    <label><input type="radio" name="sex" value="Female" /> Female</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Local Government:</td>
+                                <td>
+                                    <select id="lga" class="finput finput-md">
+                                        <option value="">-- Select LGA --</option>
+                                        <option>Atakumosa East</option>
+                                        <option>Atakumosa West</option>
+                                        <option>Ayedaade</option>
+                                        <option>Ayedire</option>
+                                        <option>Boluwaduro</option>
+                                        <option>Boripe</option>
+                                        <option>Ede North</option>
+                                        <option>Ede South</option>
+                                        <option>Egbedore</option>
+                                        <option>Ejigbo</option>
+                                        <option>Ife Central</option>
+                                        <option>Ife East</option>
+                                        <option>Ife North</option>
+                                        <option>Ife South</option>
+                                        <option>Ifedayo</option>
+                                        <option>Ifelodun</option>
+                                        <option>Ila</option>
+                                        <option>Ilesa East</option>
+                                        <option>Ilesa West</option>
+                                        <option>Irepodun</option>
+                                        <option>Irewole</option>
+                                        <option>Isokan</option>
+                                        <option>Iwo</option>
+                                        <option>Obokun</option>
+                                        <option>Odo-Otin</option>
+                                        <option>Ola-Oluwa</option>
+                                        <option>Olorunda</option>
+                                        <option>Oriade</option>
+                                        <option>Orolu</option>
+                                        <option>Osogbo</option>
+                                        <option>Other</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">State of Origin:</td>
+                                <td>
+                                    <select id="state_origin" class="finput finput-md">
+                                        <option value="">-- Select State --</option>
+                                        <option>Abia</option>
+                                        <option>Adamawa</option>
+                                        <option>Akwa Ibom</option>
+                                        <option>Anambra</option>
+                                        <option>Bauchi</option>
+                                        <option>Bayelsa</option>
+                                        <option>Benue</option>
+                                        <option>Borno</option>
+                                        <option>Cross River</option>
+                                        <option>Delta</option>
+                                        <option>Ebonyi</option>
+                                        <option>Edo</option>
+                                        <option>Ekiti</option>
+                                        <option>Enugu</option>
+                                        <option>FCT</option>
+                                        <option>Gombe</option>
+                                        <option>Imo</option>
+                                        <option>Jigawa</option>
+                                        <option>Kaduna</option>
+                                        <option>Kano</option>
+                                        <option>Katsina</option>
+                                        <option>Kebbi</option>
+                                        <option>Kogi</option>
+                                        <option>Kwara</option>
+                                        <option>Lagos</option>
+                                        <option>Nasarawa</option>
+                                        <option>Niger</option>
+                                        <option>Ogun</option>
+                                        <option>Ondo</option>
+                                        <option>Osun</option>
+                                        <option>Oyo</option>
+                                        <option>Plateau</option>
+                                        <option>Rivers</option>
+                                        <option>Sokoto</option>
+                                        <option>Taraba</option>
+                                        <option>Yobe</option>
+                                        <option>Zamfara</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Nationality:</td>
+                                <td>
+                                    <select id="nationality" class="finput finput-md">
+                                        <option value="Nigerian">Nigerian</option>
+                                        <option>Non Nigerian</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Marital Status:</td>
+                                <td>
+                                    <select id="marital" class="finput finput-md">
+                                        <option value="">-- Select --</option>
+                                        <option>Single</option>
+                                        <option>Married</option>
+                                        <option>Divorced</option>
+                                        <option>Widowed</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Age:</td>
+                                <td><input type="text" id="age" class="finput finput-sm" maxlength="3" /></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Date of Birth:</td>
+                                <td>
+                                    <select id="dob_day" class="finput" style="width:80px;">
+                                        <option value="">Day</option>
+                                        <option>1st</option>
+                                        <option>2nd</option>
+                                        <option>3rd</option>
+                                        <option>4th</option>
+                                        <option>5th</option>
+                                        <option>6th</option>
+                                        <option>7th</option>
+                                        <option>8th</option>
+                                        <option>9th</option>
+                                        <option>10th</option>
+                                        <option>11th</option>
+                                        <option>12th</option>
+                                        <option>13th</option>
+                                        <option>14th</option>
+                                        <option>15th</option>
+                                        <option>16th</option>
+                                        <option>17th</option>
+                                        <option>18th</option>
+                                        <option>19th</option>
+                                        <option>20th</option>
+                                        <option>21st</option>
+                                        <option>22nd</option>
+                                        <option>23rd</option>
+                                        <option>24th</option>
+                                        <option>25th</option>
+                                        <option>26th</option>
+                                        <option>27th</option>
+                                        <option>28th</option>
+                                        <option>29th</option>
+                                        <option>30th</option>
+                                        <option>31st</option>
+                                    </select>
+                                    <select id="dob_month" class="finput" style="width:110px;">
+                                        <option value="">Month</option>
+                                        <option>January</option>
+                                        <option>February</option>
+                                        <option>March</option>
+                                        <option>April</option>
+                                        <option>May</option>
+                                        <option>June</option>
+                                        <option>July</option>
+                                        <option>August</option>
+                                        <option>September</option>
+                                        <option>October</option>
+                                        <option>November</option>
+                                        <option>December</option>
+                                    </select>
+                                    <select id="dob_year" class="finput" style="width:82px;">
+                                        <option value="">Year</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">NIN:</td>
+                                <td><input type="text" id="nin" class="finput finput-md" maxlength="11"
+                                        placeholder="11-digit NIN" /></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- SECTION: UTME Information -->
+                    <div class="sec-head">UTME Information</div>
+                    <table class="utme-table">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+                                <th>UTME SUBJECT</th>
+                                <th>SCORE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td><strong>English Language *</strong></td>
+                                <td><input type="number" id="subj1_score" class="finput" style="width:70px;" min="0"
+                                        max="100" placeholder="0" /> *</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td><select id="subj2" class="finput" style="width:200px;"></select> *</td>
+                                <td><input type="number" id="subj2_score" class="finput" style="width:70px;" min="0"
+                                        max="100" placeholder="0" /> *</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td><select id="subj3" class="finput" style="width:200px;"></select> *</td>
+                                <td><input type="number" id="subj3_score" class="finput" style="width:70px;" min="0"
+                                        max="100" placeholder="0" /> *</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td><select id="subj4" class="finput" style="width:200px;"></select> *</td>
+                                <td><input type="number" id="subj4_score" class="finput" style="width:70px;" min="0"
+                                        max="100" placeholder="0" /> *</td>
+                            </tr>
+                            <tr class="agg-row">
+                                <td colspan="2" style="text-align:right;padding-right:12px;">Aggregate Score:</td>
+                                <td><input type="text" id="agg_score" class="finput"
+                                        style="width:70px;background:#eef2f8;" readonly /> *</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">Choice:</td>
+                                <td>
+                                    <select id="utme_choice" class="finput finput-md">
+                                        <option value="">-- Select --</option>
+                                        <option value="First">First</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Programme:</td>
+                                <td>
+                                    <select id="programme" class="finput" style="width:320px;"></select>
+                                    <div class="prog-note">* NOTE: You will not be able to change your programme after
+                                        registration.</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- SECTION: Contact Information -->
+                    <div class="sec-head">Contact Information</div>
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">Phone Number:</td>
+                                <td><input type="text" id="phone" class="finput finput-md" maxlength="15"
+                                        placeholder="2348033445566" /> <span class="red-hint">* E.g.
+                                        2348033445566</span></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Email Address:</td>
+                                <td><input type="email" id="email" class="finput finput-md" /></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Contact Address:</td>
+                                <td><textarea id="contact_addr" class="ftextarea"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Home Address:</td>
+                                <td><textarea id="home_addr" class="ftextarea"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- SECTION: Next of Kin -->
+                    <div class="sec-head">Next of Kin Information</div>
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">Next of Kin Name:</td>
+                                <td><input type="text" id="kin_name" class="finput finput-lg" /></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Relationship:</td>
+                                <td>
+                                    <select id="kin_rel" class="finput finput-md">
+                                        <option value="">-- Select --</option>
+                                        <option>Father</option>
+                                        <option>Mother</option>
+                                        <option>Brother</option>
+                                        <option>Sister</option>
+                                        <option>Uncle</option>
+                                        <option>Aunt</option>
+                                        <option>Grandfather</option>
+                                        <option>Grandmother</option>
+                                        <option>Guardian</option>
+                                        <option>Spouse</option>
+                                        <option>Other</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Phone Number:</td>
+                                <td><input type="text" id="kin_phone" class="finput finput-md" maxlength="15"
+                                        placeholder="2348033445566" /> <span class="red-hint">* E.g.
+                                        2348033445566</span></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Email Address:</td>
+                                <td><input type="email" id="kin_email" class="finput finput-md" /></td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Contact Address:</td>
+                                <td><textarea id="kin_addr" class="ftextarea"></textarea></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="submit-bar">
+                        <button class="btn-submit" onclick="submitForm()">Save &amp; Continue &raquo;</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR -->
+                <div class="side">
+                    <div class="right">
+                        <h2>REGISTRATION GUIDE</h2>
+                        <p><strong>NOTE:</strong><br />If you run into any hitch, please send an email to <span
+                                class="info-messages"><a
+                                    href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a></span>
+                            or call: <strong>+234 704 236 6317</strong></p>
+                        <p>School Address:<br /><strong>No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo,
+                                Nigeria</strong></p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 1:</strong><br />Enter your Applicant Registration Number correctly.</p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 2:</strong><br />Payment of application fee.</p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 3:</strong><br />Fill out your information correctly. Passport photo must not
+                            exceed <strong>50KB</strong>. Width and Height between <strong>150 and 250 Pixels.</strong>
+                        </p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 4:</strong><br />On completion, print your application form for your records.
+                        </p>
+                        <p><strong><span class="info-messages">PLEASE NOTE: Modification will NOT be possible after
+                                    submission.</span></strong></p>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+                <a href="https://alpha-beta.org.ng/" target="_blank">School Website</a> | <a
+                    href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
+
+        var ALL_SUBJECTS = [
+            '-- Select Subject --',
+            'Mathematics', 'Physics', 'Chemistry', 'Biology', 'Agricultural Science',
+            'Economics', 'Government', 'Literature in English', 'History', 'Geography',
+            'Further Mathematics', 'Technical Drawing', 'Computer Studies', 'Commerce',
+            'Accounting', 'Financial Accounting', 'Business Studies', 'Civic Education',
+            'Christian Religious Studies', 'Islamic Religious Studies', 'Yoruba', 'Igbo', 'Hausa',
+            'French', 'Arabic', 'Music', 'Fine Art', 'Home Economics', 'Food and Nutrition',
+            'Health Education', 'Physical Education', 'Data Processing', 'Office Practice',
+            'Animal Husbandry', 'Fisheries', 'Forestry', 'Metal Work', 'Wood Work',
+            'Electronics', 'Electrical Installation', 'Auto Mechanics', 'Building Construction',
+            'Catering Craft Practice', 'Tourism', 'Typewriting', 'Book-keeping',
+            'Insurance', 'Store Management', 'Marketing'
+        ];
+        var PROGRAMMES = [
+            '-- Select Programme --',
+            'Web Development', 'Data Science', 'Mobile App Development', 'Cybersecurity',
+            'UI/UX Design', 'Software Engineering', 'Computer Science', 'Information Technology',
+            'Networking', 'Cloud Computing', 'Artificial Intelligence', 'Game Development',
+            'Digital Marketing', 'Graphic Design', 'Robotics'
+        ];
+
+        function populateSelect(id, options) {
+            var sel = document.getElementById(id); sel.innerHTML = '';
+            options.forEach(function (o) {
+                var opt = document.createElement('option');
+                opt.value = (o === options[0]) ? '' : o;
+                opt.textContent = o; sel.appendChild(opt);
+            });
+        }
+        function populateYears() {
+            var sel = document.getElementById('dob_year');
+            sel.innerHTML = '<option value="">Year</option>';
+            var cur = new Date().getFullYear();
+            for (var y = cur - 10; y >= cur - 60; y--) {
+                var o = document.createElement('option'); o.value = y; o.textContent = y; sel.appendChild(o);
+            }
+        }
+        function calcAggregate() {
+            var s = ['subj1_score', 'subj2_score', 'subj3_score', 'subj4_score'].reduce(function (acc, id) {
+                return acc + (parseInt(document.getElementById(id).value) || 0);
+            }, 0);
+            document.getElementById('agg_score').value = s;
+        }
+        function showErr(msg) { var e = document.getElementById('err-msg'); e.innerHTML = msg; e.style.display = 'block'; window.scrollTo(0, e.offsetTop - 20); }
+        function hideErr() { document.getElementById('err-msg').style.display = 'none'; }
+        function showSuc(msg) { var e = document.getElementById('suc-msg'); e.innerHTML = msg; e.style.display = 'block'; }
+        function gv(id) { return (document.getElementById(id) || {}).value || ''; }
+        function gvr(n) { var r = document.querySelector('input[name="' + n + '"]:checked'); return r ? r.value : ''; }
+
+        function submitForm() {
+            hideErr();
+            var errs = [];
+            if (!gv('fullname').trim()) errs.push('Full Name is required.');
+            if (!gvr('sex')) errs.push('Sex is required.');
+            if (!gv('lga')) errs.push('Local Government is required.');
+            if (!gv('state_origin')) errs.push('State of Origin is required.');
+            if (!gv('marital')) errs.push('Marital Status is required.');
+            if (!gv('age').trim()) errs.push('Age is required.');
+            if (!gv('dob_day') || !gv('dob_month') || !gv('dob_year')) errs.push('Date of Birth is required.');
+            if (!gv('nin').trim() || gv('nin').length < 11) errs.push('NIN must be 11 digits.');
+            if (!gv('subj1_score')) errs.push('English Language score is required.');
+            if (!gv('subj2')) errs.push('UTME Subject 2 is required.');
+            if (!gv('subj2_score')) errs.push('Score for Subject 2 is required.');
+            if (!gv('subj3')) errs.push('UTME Subject 3 is required.');
+            if (!gv('subj3_score')) errs.push('Score for Subject 3 is required.');
+            if (!gv('subj4')) errs.push('UTME Subject 4 is required.');
+            if (!gv('subj4_score')) errs.push('Score for Subject 4 is required.');
+            if (!gv('utme_choice')) errs.push('Choice is required.');
+            if (!gv('programme')) errs.push('Programme is required.');
+            if (!gv('phone').trim()) errs.push('Phone Number is required.');
+            if (!gv('email').trim() || gv('email').indexOf('@') < 0) errs.push('A valid Email Address is required.');
+            if (!gv('contact_addr').trim()) errs.push('Contact Address is required.');
+            if (!gv('home_addr').trim()) errs.push('Home Address is required.');
+            if (!gv('kin_name').trim()) errs.push('Next of Kin Name is required.');
+            if (!gv('kin_rel')) errs.push('Relationship is required.');
+            if (!gv('kin_phone').trim()) errs.push('Next of Kin Phone Number is required.');
+            if (!gv('kin_addr').trim()) errs.push('Next of Kin Contact Address is required.');
+
+            if (errs.length > 0) {
+                showErr('<b>Please fix the following errors:</b><ul style="margin:6px 0 0 16px;">' + errs.map(function (e) { return '<li>' + e + '</li>'; }).join('') + '</ul>');
+                return;
+            }
+
+            var cur = null;
+            try { cur = JSON.parse(localStorage.getItem('alphabeta_current') || 'null'); } catch (e) { }
+            if (!cur) { window.location = 'application.html'; return; }
+
+            cur.form = {
+                fullname: gv('fullname'), sex: gvr('sex'), lga: gv('lga'),
+                state_origin: gv('state_origin'), nationality: gv('nationality'),
+                marital: gv('marital'), age: gv('age'),
+                dob: gv('dob_day') + ' ' + gv('dob_month') + ' ' + gv('dob_year'), nin: gv('nin'),
+                utme_subj1: 'English Language', utme_score1: gv('subj1_score'),
+                subj2: gv('subj2'), utme_score2: gv('subj2_score'),
+                subj3: gv('subj3'), utme_score3: gv('subj3_score'),
+                subj4: gv('subj4'), utme_score4: gv('subj4_score'),
+                agg_score: gv('agg_score'), utme_choice: gv('utme_choice'),
+                programme: gv('programme'), phone: gv('phone'),
+                email: gv('email'), contact_addr: gv('contact_addr'),
+                home_addr: gv('home_addr'), kin_name: gv('kin_name'),
+                kin_rel: gv('kin_rel'), kin_phone: gv('kin_phone'),
+                kin_email: gv('kin_email'), kin_addr: gv('kin_addr')
+            };
+            cur.form_complete = true;
+            localStorage.setItem('alphabeta_current', JSON.stringify(cur));
+
+            try {
+                var apps = JSON.parse(localStorage.getItem('alphabeta_applications') || '[]');
+                for (var i = 0; i < apps.length; i++) {
+                    if (apps[i].utme_reg_no === cur.utme_reg_no) { apps[i] = Object.assign(apps[i], cur); break; }
+                }
+                localStorage.setItem('alphabeta_applications', JSON.stringify(apps));
+            } catch (e) { }
+
+            showSuc('&#10004; Application form saved! Redirecting to next step...');
+            setTimeout(function () { window.location = 'application_form_2.html'; }, 1500);
+        }
+
+        window.onload = function () {
+            var st = parseInt(localStorage.getItem('setUpPageStatus') || '0');
+            if (st < 2) { window.location = 'payment.html'; return; }
+
+            var cur = null;
+            try { cur = JSON.parse(localStorage.getItem('alphabeta_current') || 'null'); } catch (e) { }
+            if (!cur || !cur.paid) { window.location = 'payment.html'; return; }
+
+           document.getElementById('disp_reg').value = cur.utme_reg_no;
+
+            populateSelect('subj2', ALL_SUBJECTS);
+            populateSelect('subj3', ALL_SUBJECTS);
+            populateSelect('subj4', ALL_SUBJECTS);
+            populateSelect('programme', PROGRAMMES);
+            populateYears();
+
+            if (cur.form) {
+                var f = cur.form;
+                ['fullname', 'age', 'nin', 'phone', 'email', 'contact_addr', 'home_addr', 'kin_name', 'kin_phone', 'kin_email', 'kin_addr'].forEach(function (id) {
+                    if (f[id] !== undefined && document.getElementById(id)) document.getElementById(id).value = f[id];
+                });
+                if (f.sex) { var r = document.querySelector('input[name="sex"][value="' + f.sex + '"]'); if (r) r.checked = true; }
+                ['lga', 'state_origin', 'nationality', 'marital', 'subj2', 'subj3', 'subj4', 'utme_choice', 'programme'].forEach(function (id) {
+                    if (f[id] && document.getElementById(id)) document.getElementById(id).value = f[id];
+                });
+                if (f.utme_score1) document.getElementById('subj1_score').value = f.utme_score1;
+                if (f.utme_score2) document.getElementById('subj2_score').value = f.utme_score2;
+                if (f.utme_score3) document.getElementById('subj3_score').value = f.utme_score3;
+                if (f.utme_score4) document.getElementById('subj4_score').value = f.utme_score4;
+                if (f.agg_score) document.getElementById('agg_score').value = f.agg_score;
+                if (f.dob) { var p = f.dob.split(' '); if (p.length === 3) { document.getElementById('dob_day').value = p[0]; document.getElementById('dob_month').value = p[1]; document.getElementById('dob_year').value = p[2]; } }
+            }
+
+            ['subj1_score', 'subj2_score', 'subj3_score', 'subj4_score'].forEach(function (id) {
+                document.getElementById(id).addEventListener('input', calcAggregate);
+            });
+        };
+    </script>
+</body>
+
+</html>

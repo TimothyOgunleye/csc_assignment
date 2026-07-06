@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Alpha-Beta Coding School :: Returning Applicants Login</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background: #1a2a4a;
+            color: #222;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+            border-bottom: 4px solid #c8960c;
+        }
+
+        .block_header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .logo {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo .brand-name {
+            color: #f5c842;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo .brand-sub {
+            color: #cfe0f4;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .logo .brand-contact {
+            color: #cfe0f4;
+            font-size: 11.5px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .logo .brand-contact a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .body {
+            background: #f0f4f8;
+            padding: 0;
+        }
+
+        .body_resize {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 10px 40px 10px;
+        }
+
+        .panel {
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #1a3a6b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .panel h2 {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px 14px;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .panel h2 a.home-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .panel h2 a.home-icon img {
+            vertical-align: middle;
+        }
+
+        #Ncontainer {
+            padding: 20px 18px 16px 18px;
+        }
+
+        fieldset {
+            border: 1px solid #b8cce4;
+            padding: 16px 18px;
+            background: #f7fafd;
+            border-radius: 2px;
+        }
+
+        legend {
+            background: #c8960c;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 3px 14px;
+            border-radius: 2px;
+        }
+
+        fieldset table {
+            margin-top: 10px;
+        }
+
+        fieldset table td {
+            padding: 6px 6px;
+            vertical-align: middle;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1a3a6b;
+            font-size: 13px;
+        }
+
+        select.Sel {
+            border: 1px solid #7a9cc6;
+            background: #fff;
+            padding: 5px 6px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            min-width: 220px;
+            outline: none;
+        }
+
+        input.Txt {
+            border: 1px solid #7a9cc6;
+            padding: 5px 7px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            width: 220px;
+            outline: none;
+        }
+
+        input.Txt:focus {
+            border-color: #c8960c;
+        }
+
+        input.submit {
+            background: #1a3a6b;
+            color: #f5c842;
+            border: 1px solid #0d1f3c;
+            padding: 7px 26px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        input.submit:hover {
+            background: #c8960c;
+            color: #fff;
+            border-color: #a07208;
+        }
+
+        .success-msg {
+            background: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-msg {
+            background: #ffebee;
+            border: 1px solid #c62828;
+            color: #b71c1c;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-msg-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #c62828;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            background: #0d1f3c;
+            border-top: 3px solid #c8960c;
+            padding: 10px 0;
+            text-align: center;
+            color: #a0b8d8;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .clr {
+            clear: both;
+        }
+
+        .bg {
+            height: 1px;
+            background: #dde8f4;
+            margin: 4px 0;
+        }
+
+        .forgot-pw-link {
+            color: #1a3a6b;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .forgot-pw-link:hover {
+            color: #c8960c;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="block_header">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                        alt="Alpha-Beta Coding and Programming School Logo" />
+                    <div>
+                        <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                        <div class="brand-sub">Admissions Portal</div>
+                        <div class="brand-contact">
+                            Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                            Email: <a href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a>
+                            &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317">+234 704 236 6317</a>
+                            &nbsp;|&nbsp; Website: <a href="https://alpha-beta.org.ng/"
+                                target="_blank">alpha-beta.org.ng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="body_resize">
+
+                <div class="panel">
+                    <h2>
+                        RETURNING APPLICANTS
+                        <a href="application.html" class="home-icon" title="Go to Portal Home">
+                            <img src="https://img.icons8.com/color/25/home--v1.png" width="25" height="25" alt="Home" />
+                        </a>
+                    </h2>
+
+                    <div id="Ncontainer">
+                        <div id="form-message-success" class="success-msg"></div>
+                        <div id="form-message-error" class="error-msg"></div>
+
+                        <form id="loginForm" autocomplete="off" onsubmit="return handleLogin(event);">
+                            <fieldset>
+                                <legend>Registered Applicants</legend>
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="160"><label for="app_type">Application Type:</label></td>
+                                        <td>
+                                            <select name="app_type" id="app_type" class="Sel">
+                                                <option value="Regular">Regular</option>
+                                                <option value="Supplementary">Supplementary</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="reg_no">DE/UTME Reg. No.:</label></td>
+                                        <td><input name="reg_no" type="text" class="Txt" id="reg_no" maxlength="14" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="password">Password:</label></td>
+                                        <td><input name="password" type="password" class="Txt" id="password" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>
+                                            <input type="submit" class="submit" value="   Sign In   " />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td style="padding-top:8px;">
+                                            <a href="forgot-password.html" class="forgot-pw-link">Forgot Password?</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </fieldset>
+                        </form>
+
+                        <p style="margin-top:14px; font-size:12px;">
+                            <em>The password required to sign in here is the one you created during registration.</em>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+                <a href="application.html">School Home</a> | <a href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('yr').textContent = new Date().getFullYear();
+
+        // Use the same localStorage keys as the application forms
+        var STORAGE_KEY = 'alphabeta_applications';
+        var CURRENT_KEY = 'alphabeta_current';
+        var STATUS_KEY = 'setUpPageStatus';
+
+        function getApplications() {
+            try { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : []; } catch (e) { return []; }
+        }
+
+        function escHtml(s) {
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function showError(html) {
+            var el = document.getElementById('form-message-error');
+            el.innerHTML = '<span class="error-msg-icon">&#10007;</span>' + html;
+            el.style.display = 'block';
+            document.getElementById('form-message-success').style.display = 'none';
+        }
+
+        function showSuccess(html) {
+            var el = document.getElementById('form-message-success');
+            el.innerHTML = html;
+            el.style.display = 'block';
+            document.getElementById('form-message-error').style.display = 'none';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+
+            var reg_no = document.getElementById('reg_no').value.trim().toUpperCase();
+            var password = document.getElementById('password').value;
+            var app_type = document.getElementById('app_type').value;
+
+            if (!reg_no || !password) {
+                showError('Please enter both your Registration Number and Password.');
+                return false;
+            }
+
+            // Get all applications
+            var apps = getApplications();
+            var found = null;
+            var foundIndex = -1;
+
+            // Search for the application with matching registration number
+            for (var i = 0; i < apps.length; i++) {
+                if (apps[i].utme_reg_no === reg_no) {
+                    found = apps[i];
+                    foundIndex = i;
+                    break;
+                }
+            }
+
+            if (!found) {
+                showError('No application found for Registration Number "<strong>' + escHtml(reg_no) + '</strong>". Please start a New Application.');
+                return false;
+            }
+
+            // Check if password matches (the password is stored during registration)
+            if (found.password !== password) {
+                showError('Invalid password. Please try again or click "Forgot Password?" below to reset your password.');
+                return false;
+            }
+
+            // Check if application is complete
+            if (!found.form_complete || !found.olevel_complete) {
+                showError('Your application is not yet complete. Please complete all steps before signing in.');
+                // Store current user data and redirect to the appropriate form
+                try { localStorage.setItem(CURRENT_KEY, JSON.stringify(found)); } catch (ex) { }
+
+                if (!found.form_complete) {
+                    setTimeout(function () { window.location.href = 'application_form_1.html'; }, 1500);
+                } else if (!found.olevel_complete) {
+                    setTimeout(function () { window.location.href = 'application_form_2.html'; }, 1500);
+                }
+                return false;
+            }
+
+            // Store the current user data
+            try { localStorage.setItem(CURRENT_KEY, JSON.stringify(found)); } catch (ex) { }
+
+            // Set status to completed (3)
+            try { localStorage.setItem(STATUS_KEY, '3'); } catch (ex) { }
+
+            // Show success message and redirect to dashboard
+            showSuccess('&#10004; Welcome back! Redirecting to your dashboard...');
+
+            setTimeout(function () {
+                window.location.href = 'dashboard.html';
+            }, 1200);
+
+            return false;
+        }
+
+        // Auto-focus on registration number field
+        window.onload = function () {
+            document.getElementById('reg_no').focus();
+        };
+    </script>
+</body>
+
+</html>

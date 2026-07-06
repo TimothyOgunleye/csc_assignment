@@ -1,0 +1,575 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>.:| Alpha-Beta Coding and Programming School :: Admissions Portal |:.</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background: #1a2a4a;
+            color: #222;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+            border-bottom: 4px solid #c8960c;
+        }
+
+        .block_header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .logo {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo .brand-name {
+            color: #f5c842;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo .brand-sub {
+            color: #cfe0f4;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .logo .brand-contact {
+            color: #cfe0f4;
+            font-size: 11.5px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .logo .brand-contact a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .body {
+            background: #f0f4f8;
+            padding: 0;
+        }
+
+        .body_resize {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 10px 30px 10px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .left {
+            flex: 1 1 0%;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #1a3a6b;
+        }
+
+        .left h2 {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #Ncontainer {
+            padding: 16px 14px 10px 14px;
+        }
+
+        fieldset {
+            border: 1px solid #b8cce4;
+            padding: 14px 16px;
+            background: #f7fafd;
+            border-radius: 2px;
+        }
+
+        legend {
+            background: #c8960c;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 3px 14px;
+            border-radius: 2px;
+        }
+
+        fieldset table {
+            margin-top: 10px;
+        }
+
+        fieldset table td {
+            padding: 5px 6px;
+            vertical-align: middle;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1a3a6b;
+            font-size: 13px;
+        }
+
+        select.Sel,
+        select[name="entry_mode_"],
+        select[name="program_choice"] {
+            border: 1px solid #7a9cc6;
+            background: #fff;
+            padding: 4px 6px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            min-width: 200px;
+            outline: none;
+        }
+
+        input.Txt {
+            border: 1px solid #7a9cc6;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            width: 210px;
+            outline: none;
+        }
+
+        input.submit {
+            background: #1a3a6b;
+            color: #f5c842;
+            border: 1px solid #0d1f3c;
+            padding: 5px 22px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        input.submit:hover {
+            background: #c8960c;
+            color: #fff;
+            border-color: #a07208;
+        }
+
+        .notice-section {
+            padding: 14px 16px 16px 16px;
+            border-top: 1px solid #dde8f4;
+        }
+
+        .notice-section h2 {
+            color: #1a3a6b;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 0 0 6px 0;
+            display: block;
+        }
+
+        .notice-section p {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .notice-section a {
+            color: #1a3a6b;
+        }
+
+        .side {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .right {
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #c8960c;
+        }
+
+        .right h2 {
+            background: #c8960c;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #1a3a6b;
+        }
+
+        .right p {
+            padding: 8px 12px 4px 12px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .right p strong {
+            color: #1a3a6b;
+        }
+
+        .right p a {
+            color: #c8960c;
+            text-decoration: none;
+        }
+
+        .bg {
+            height: 1px;
+            background: #dde8f4;
+            margin: 2px 12px;
+        }
+
+        .info-messages {
+            color: #c00;
+        }
+
+        .footer {
+            background: #0d1f3c;
+            border-top: 3px solid #c8960c;
+            padding: 10px 0;
+            text-align: center;
+            color: #a0b8d8;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .clr {
+            clear: both;
+        }
+
+        .success-msg {
+            background: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-msg {
+            background: #ffebee;
+            border: 1px solid #c62828;
+            color: #b71c1c;
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-msg-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #c62828;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            margin-right: 8px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="block_header">
+                <div class="logo">
+                    <img src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                        alt="Alpha-Beta Coding and Programming School Logo" />
+                    <div>
+                        <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                        <div class="brand-sub">Admissions Portal</div>
+                        <div class="brand-contact">
+                            Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                            Email: <a href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a>
+                            &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317">+234 704 236 6317</a>
+                            &nbsp;|&nbsp; Website: <a href="https://alpha-beta.org.ng/"
+                                target="_blank">alpha-beta.org.ng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body_resize">
+                <div class="left">
+                    <h2>NEW APPLICATION &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="index.html"><img src="https://img.icons8.com/color/25/home--v1.png" width="25"
+                                height="25" border="0" align="right" title="Go to Portal Home"
+                                alt="Go to Portal Home" /></a>
+                    </h2>
+                    <div id="Ncontainer">
+                        <div id="form-message-success" class="success-msg"></div>
+                        <div id="form-message-error" class="error-msg"></div>
+
+                        <form id="form" name="form" method="post" action="" enctype="multipart/form-data"
+                            autocomplete="off" onsubmit="return handleSubmit(event);">
+                            <div id="fields">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="68%">
+                                            <fieldset>
+                                                <legend>Start New Application</legend>
+                                                <img src="https://img.icons8.com/color/66/add-user-male--v1.png"
+                                                    width="66" height="66" alt="New Application" />
+                                                <table width="500" border="0">
+                                                    <tr>
+                                                        <td width="136"><label for="entry_mode_">Mode of Entry:</label>
+                                                        </td>
+                                                        <td width="354">
+                                                            <select name="entry_mode_" size="1" id="entry_mode_">
+                                                                <option value=""> -- Select -- </option>
+                                                                <option value="UTME">UTME</option>
+                                                                <option value="DE">Direct Entry</option>
+                                                                <option value="DE-JD">Direct Entry (JAMB Direct
+                                                                    Conversion)</option>
+                                                                <option value="TRANSFER">Transfer</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="uniosun_choice">Choice:</label></td>
+                                                        <td>
+                                                            <select name="uniosun_choice" size="1" id="uniosun_choice">
+                                                                <option value=""> -- Select -- </option>
+                                                                <option value="FIRST">First</option>
+                                                                <option value="OTHER">Other</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="utme_reg_no">DE/UTME Reg. No.:</label></td>
+                                                        <td><input name="utme_reg_no" type="text" class="Txt"
+                                                                id="utme_reg_no" value="" size="32" maxlength="14" />
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td><input type="submit" name="apply" class="submit" id="apply"
+                                                                value="   Sign Up   " /></td>
+                                                    </tr>
+                                                </table>
+                                            </fieldset>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="notice-section">
+                        <h2>2026/2027 ADMISSIONS NOTICE</h2>
+                        <p>Notice is hereby given that the 2026/2027 admissions exercise into all coding and
+                            programming courses at Alpha-Beta Coding and Programming School is now open. Interested
+                            applicants are encouraged to apply early, as enrollment into each cohort is limited.
+                            Successful applicants will be notified by email and SMS ahead of the resumption date.</p>
+                        <p><strong><a href="https://alpha-beta.org.ng/" target="_blank">....Read More</a></strong></p>
+                    </div>
+                </div>
+
+                <div class="side">
+                    <div class="right">
+                        <h2>REGISTRATION GUIDE</h2>
+                        <p><strong>NOTE:</strong><br />If you run into any hitch filling out your form, please send an
+                            email to
+                            <span class="info-messages"><a
+                                    href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a></span>
+                            or call: <strong>+234 704 236 6317</strong>
+                        </p>
+                        <p>School Address:<br /><strong>No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo,
+                                Nigeria</strong></p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 1:</strong><br />Be careful to enter your Applicant Registration Number
+                            correctly at the login page.</p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 2:</strong><br />Complete your registration form with accurate personal and
+                            programme details.</p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 3:</strong><br />Fill out your information correctly in the subsequent forms
+                            presented and submit as appropriate.</strong></p>
+                        <div class="bg"></div>
+                        <p><strong>STEP 4:</strong><br />On completion of the registration form, print your
+                            application form for your records.</p>
+                        <p><strong><span class="info-messages">PLEASE NOTE: Modification of your application form will
+                                    NOT be possible after submission, so please review your details carefully before
+                                    submitting.</span></strong></p>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+                <a href="https://alpha-beta.org.ng/" target="_blank">School Website</a> | <a
+                    href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+            </div>
+            <p class="clr"></p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
+
+        var STORAGE_KEY = 'alphabeta_applications';
+        var STATUS_KEY = 'setUpPageStatus';
+
+        function getApplications() {
+            try { var r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r) : []; } catch (e) { return []; }
+        }
+        function saveApplications(apps) {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(apps)); } catch (e) { }
+        }
+        function getStatus() {
+            try { return parseInt(localStorage.getItem(STATUS_KEY) || '0'); } catch (e) { return 0; }
+        }
+        function setStatus(n) {
+            try { localStorage.setItem(STATUS_KEY, String(n)); } catch (e) { }
+        }
+        function escHtml(s) {
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+        function showError(html) {
+            var el = document.getElementById('form-message-error');
+            el.innerHTML = '<span class="error-msg-icon">&#10007;</span>' + html;
+            el.style.display = 'block';
+            document.getElementById('form-message-success').style.display = 'none';
+        }
+        function showSuccess(html) {
+            var el = document.getElementById('form-message-success');
+            el.innerHTML = html;
+            el.style.display = 'block';
+            document.getElementById('form-message-error').style.display = 'none';
+        }
+
+        // Sign-up form is always visible, allowing multiple new applications
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            var entry_mode = document.getElementById('entry_mode_').value;
+            var choice = document.getElementById('uniosun_choice').value;
+            var reg_no = document.getElementById('utme_reg_no').value.trim();
+
+            if (!entry_mode) { showError('Please select Mode of Entry.'); return false; }
+            if (!choice) { showError('Please select your Choice.'); return false; }
+            if (!reg_no) { showError('Please enter your Applicant Registration Number.'); return false; }
+
+            if (!/^2026/.test(reg_no)) {
+                showError('WARNING: Your UTME or Direct Entry Registration Number is not in the correct format, please cross-check it and try again!');
+                return false;
+            }
+
+            // Check if already registered – if so, resume that application
+            var apps = getApplications();
+            for (var i = 0; i < apps.length; i++) {
+                if (apps[i].utme_reg_no === reg_no) {
+                    var a = apps[i];
+                    var fullname = a.form ? a.form.fullname : reg_no;
+                    var choiceText = a.choice || 'N/A';
+                    var programme = a.form ? a.form.programme : 'N/A';
+
+                    // Check if application is fully completed (status >= 3)
+                    if (a.completed === true || getStatus() >= 3) {
+                        // Build detailed error message
+                        var errorMsg = 'ERROR: The Registration Number "<strong>' + escHtml(reg_no) + '</strong>" (<strong>' + escHtml(fullname) + '</strong>) has already completed the ';
+
+                        // Add entry mode
+                        if (a.entry_mode) {
+                            errorMsg += a.entry_mode + ' ';
+                        }
+
+                        // Add choice
+                        if (choiceText !== 'N/A') {
+                            errorMsg += choiceText.toLowerCase() + ' choice ';
+                        }
+
+                        errorMsg += 'screening application';
+
+                        // Add programme if available
+                        if (programme !== 'N/A') {
+                            errorMsg += ' for <strong>' + escHtml(programme) + '</strong>';
+                        }
+
+                        errorMsg += '. You cannot participate in the SUPPLEMENTARY application.';
+
+                        showError(errorMsg);
+                        return false;
+                    } else {
+                        try { localStorage.setItem('alphabeta_current', JSON.stringify(a)); } catch (ex) { }
+                        window.location.href = 'login.html';
+                    }
+                    return false;
+                }
+            }
+
+            // New application
+            var now = new Date();
+            var dateStr = now.getFullYear() + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + ' ' +
+                String(now.getHours()).padStart(2, '0') + ':' +
+                String(now.getMinutes()).padStart(2, '0');
+
+            var app = { utme_reg_no: reg_no, entry_mode: entry_mode, choice: choice, date: dateStr };
+            apps.push(app);
+            saveApplications(apps);
+            try { localStorage.setItem('alphabeta_current', JSON.stringify(app)); } catch (ex) { }
+
+            setStatus(1);
+
+            showSuccess('&#10004; Registration initiated! Redirecting to payment...');
+            setTimeout(function () { window.location.href = 'payment.html'; }, 1200);
+            return false;
+        }
+    </script>
+</body>
+
+</html>

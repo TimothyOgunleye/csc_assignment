@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Alpha-Beta Coding and Programming School :: Admissions Portal</title>
+<style type="text/css">
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background: #1a2a4a;
+    color: #222;
+}
+
+.main { width:100%; min-height:100vh; background:#f0f4f8; }
+
+.header {
+    background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+    border-bottom: 4px solid #c8960c;
+}
+
+.block_header { max-width:1100px; margin:0 auto; padding:0 10px; }
+
+.logo { padding:14px 0; text-align:center; }
+.logo .brand-name {
+    color:#f5c842;
+    font-size:26px;
+    font-weight:bold;
+    letter-spacing:1px;
+    text-shadow: 0 2px 3px rgba(0,0,0,0.4);
+}
+.logo .brand-sub {
+    color:#cfe0f4;
+    font-size:13px;
+    font-style:italic;
+    margin-top:2px;
+}
+
+.body { background:#f0f4f8; padding:0; }
+
+.body_resize {
+    max-width:1100px;
+    margin:0 auto;
+    padding:30px 10px 40px 10px;
+}
+
+.notice-banner {
+    max-width:700px;
+    margin:0 auto 22px auto;
+    background:#fff;
+    border:1px solid #b8cce4;
+    border-left:5px solid #c8960c;
+    padding:14px 18px;
+    font-size:12px;
+    color:#333;
+    line-height:1.6;
+}
+.notice-banner strong { color:#1a3a6b; }
+
+.choice-grid {
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    padding:30px 20px 36px 20px;
+    flex-wrap:wrap;
+}
+
+.choice-card {
+    flex:1 1 260px;
+    max-width:300px;
+    background:#fff;
+    border:1px solid #b8cce4;
+    border-top:4px solid #c8960c;
+    text-align:center;
+    padding:26px 18px 22px 18px;
+    text-decoration:none;
+    color:#1a3a6b;
+    display:block;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.choice-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(13,31,60,0.18);
+    border-top-color:#1a3a6b;
+}
+.choice-card .icon-circle {
+    width:74px; height:74px; border-radius:50%;
+    background:#1a3a6b;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 14px auto;
+}
+.choice-card .icon-circle img { width:38px; height:38px; }
+.choice-card h3 { font-size:16px; font-weight:bold; margin-bottom:6px; color:#1a3a6b; }
+.choice-card p { font-size:12px; color:#555; }
+
+.footer {
+    background:#0d1f3c;
+    border-top:3px solid #c8960c;
+    padding:12px 0;
+    text-align:center;
+    color:#a0b8d8;
+    font-size:12px;
+}
+.footer a { color:#f5c842; text-decoration:none; }
+
+.clr { clear:both; }
+</style>
+</head>
+<body>
+<div class="main">
+
+    <div class="header">
+        <div class="block_header">
+            <div class="logo" style="display:flex; align-items:center; justify-content:center; gap:16px; text-align:left; flex-wrap:wrap;">
+                <img src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg" alt="Alpha-Beta Coding and Programming School Logo" style="max-width:90px; height:auto; border-radius:6px; flex-shrink:0;" />
+                <div>
+                    <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                    <div class="brand-sub">Undergraduate Admissions Portal</div>
+                    <div style="color:#cfe0f4; font-size:12px; margin-top:6px; line-height:1.5;">
+                        Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                        Email: <a href="mailto:info@alpha-beta.org.ng" style="color:#f5c842; text-decoration:none;">info@alpha-beta.org.ng</a>
+                        &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317" style="color:#f5c842; text-decoration:none;">+234 704 236 6317</a><br />
+                        Website: <a href="https://alpha-beta.org.ng/" target="_blank" style="color:#f5c842; text-decoration:none;">https://alpha-beta.org.ng/</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="body_resize">
+
+            <div class="notice-banner">
+                <strong>Welcome.</strong> Please choose an option below to continue with your admissions application.
+                New applicants should select <strong>"New Applicant"</strong> to begin a fresh application.
+                If you have already started or completed your application, select <strong>"Returning Applicant"</strong>
+                to sign in and continue.
+            </div>
+
+            <div class="choice-grid">
+
+                <a href="application.html" class="choice-card">
+                    <div class="icon-circle">
+                        <img src="https://img.icons8.com/fluency-systems-filled/48/ffffff/plus-math.png" alt="New Applicant" />
+                    </div>
+                    <h3>New Applicant</h3>
+                    <p>Start a new admissions application using your DE/UTME Registration Number.</p>
+                </a>
+
+                <a href="login.html" class="choice-card">
+                    <div class="icon-circle">
+                        <img src="https://img.icons8.com/fluency-systems-filled/48/ffffff/user-male-circle.png" alt="Returning Applicant" />
+                    </div>
+                    <h3>Returning Applicant</h3>
+                    <p>Sign in to continue, edit, or reprint your existing application form.</p>
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+            <a href="https://alpha-beta.org.ng/" target="_blank">School Website</a> | <a href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

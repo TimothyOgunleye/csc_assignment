@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Alpha-Beta Coding School :: Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background: #f0f4f8;
+            color: #222;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+            border-bottom: 4px solid #c8960c;
+        }
+
+        .block_header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .logo {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo .brand-name {
+            color: #f5c842;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo .brand-sub {
+            color: #cfe0f4;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .logo .brand-contact {
+            color: #cfe0f4;
+            font-size: 11.5px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .logo .brand-contact a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .body_resize {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 10px 30px 10px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .left {
+            flex: 1 1 0%;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #1a3a6b;
+        }
+
+        .left-header {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .side {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .right {
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #c8960c;
+        }
+
+        .right h2 {
+            background: #c8960c;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #1a3a6b;
+        }
+
+        .right p {
+            padding: 8px 12px 4px 12px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .right p strong {
+            color: #1a3a6b;
+        }
+
+        .bg {
+            height: 1px;
+            background: #dde8f4;
+            margin: 2px 12px;
+        }
+
+        .info-messages {
+            color: #c00;
+        }
+
+        .footer {
+            background: #0d1f3c;
+            border-top: 3px solid #c8960c;
+            padding: 10px 0;
+            text-align: center;
+            color: #a0b8d8;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .clr {
+            clear: both;
+        }
+
+        /* Dashboard Styles */
+        .user-info {
+            background: #f7fafd;
+            padding: 15px 18px;
+            border-bottom: 1px solid #dde8f4;
+        }
+
+        .user-info .name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a3a6b;
+        }
+
+        .user-info .reg-no {
+            color: #555;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .user-info .programme {
+            color: #c8960c;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 4px;
+        }
+
+        .notice-box {
+            background: #fff3e0;
+            border-left: 4px solid #c8960c;
+            padding: 14px 16px;
+            margin: 12px 14px;
+            border-radius: 2px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .notice-box strong {
+            color: #1a3a6b;
+        }
+
+        /* Sidebar Menu Styles */
+        .sidebar-menu {
+            padding: 8px 0;
+        }
+
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-menu ul li {
+            padding: 0;
+            border-bottom: 1px solid #f0f4f8;
+        }
+
+        .sidebar-menu ul li a {
+            color: #1a3a6b;
+            text-decoration: none;
+            font-size: 13px;
+            display: block;
+            padding: 10px 14px;
+            transition: background 0.2s;
+        }
+
+        .sidebar-menu ul li a:hover {
+            background: #e8edf5;
+            color: #c8960c;
+        }
+
+        .sidebar-menu ul li a .icon {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .sidebar-menu ul li a.btn-signout {
+            background: #c62828;
+            color: #fff !important;
+            text-align: center;
+            font-weight: bold;
+            margin: 4px 8px;
+            border-radius: 2px;
+        }
+
+        .sidebar-menu ul li a.btn-signout:hover {
+            background: #b71c1c !important;
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .header,
+            .footer,
+            .side,
+            .task-menu,
+            .notice-box,
+            .no-print {
+                display: none !important;
+            }
+
+            .body_resize {
+                padding: 0 !important;
+            }
+
+            .left {
+                border: none !important;
+            }
+
+            .left-header {
+                background: #1a3a6b !important;
+                color: #f5c842 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .sec-head {
+                background: #c8960c !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .grade-table th {
+                background: #1a3a6b !important;
+                color: #f5c842 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .grade-table th:first-child {
+                background: #c8960c !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .utme-table th {
+                background: #1a3a6b !important;
+                color: #f5c842 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .utme-table th:first-child {
+                background: #c8960c !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .print-school-header {
+                display: block !important;
+            }
+        }
+
+        .print-school-header {
+            display: none;
+            text-align: center;
+            padding: 15px 0 10px 0;
+            border-bottom: 2px solid #c8960c;
+            margin-bottom: 15px;
+        }
+
+        .print-school-header .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .print-school-header .logo-container img {
+            max-width: 70px;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .print-school-header .school-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1a3a6b;
+            letter-spacing: 1px;
+        }
+
+        .print-school-header .school-address {
+            font-size: 13px;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .print-school-header .school-sub {
+            font-size: 14px;
+            color: #c8960c;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        /* Print Form Styles - Hidden by default, shown when printing */
+        #print-container {
+            display: none;
+        }
+
+        @media print {
+            #print-container {
+                display: block !important;
+            }
+
+            #dashboard-content {
+                display: none !important;
+            }
+        }
+
+        .sec-head {
+            background: #c8960c;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 6px 14px;
+            margin: 16px 14px 0 14px;
+        }
+
+        .form-wrap {
+            padding: 10px 14px 4px 14px;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-table td {
+            padding: 6px 6px;
+            vertical-align: middle;
+        }
+
+        .form-table td.lbl {
+            text-align: right;
+            font-weight: bold;
+            color: #1a3a6b;
+            width: 170px;
+            font-size: 13px;
+        }
+
+        .form-table td.val {
+            font-weight: normal;
+            color: #222;
+            font-size: 13px;
+        }
+
+        .utme-table {
+            width: 96%;
+            margin: 10px 14px;
+            border-collapse: collapse;
+        }
+
+        .utme-table th {
+            background: #1a3a6b;
+            color: #f5c842;
+            padding: 6px 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .utme-table th:first-child {
+            background: #c8960c;
+        }
+
+        .utme-table td {
+            padding: 5px 8px;
+            border-bottom: 1px solid #dde8f4;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .utme-table td:first-child {
+            color: #1a3a6b;
+            font-weight: bold;
+            background: #f7fafd;
+        }
+
+        .utme-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .agg-row td {
+            background: #f0f4f8;
+            font-weight: bold;
+            color: #1a3a6b;
+        }
+
+        .grade-table {
+            width: 96%;
+            margin: 8px auto 10px auto;
+            border-collapse: collapse;
+        }
+
+        .grade-table th {
+            background: #1a3a6b;
+            color: #f5c842;
+            padding: 6px 8px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .grade-table th:first-child {
+            background: #c8960c;
+        }
+
+        .grade-table td {
+            padding: 5px 6px;
+            border-bottom: 1px solid #dde8f4;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .grade-table td:first-child {
+            font-weight: bold;
+            color: #1a3a6b;
+            background: #eef2f8;
+        }
+
+        .grade-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .olevel-block {
+            margin: 10px 14px 6px 14px;
+            border: 1px solid #b8cce4;
+            background: #f7fafd;
+            border-radius: 2px;
+        }
+
+        .olevel-block .olevel-head {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 6px 12px;
+        }
+
+        .olevel-meta {
+            padding: 10px 12px 6px 12px;
+        }
+
+        .olevel-meta table td {
+            padding: 5px 8px;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        .olevel-meta table td label {
+            font-weight: bold;
+            color: #1a3a6b;
+        }
+
+        .readonly-field {
+            background: #eef2f8;
+            border: 1px solid #b8cce4;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #1a3a6b;
+            font-weight: bold;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .print-btn {
+            background: #1a3a6b;
+            color: #f5c842;
+            border: none;
+            padding: 6px 18px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .print-btn:hover {
+            background: #c8960c;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #888;
+            color: #fff;
+            border: none;
+            padding: 6px 18px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .btn-back:hover {
+            background: #555;
+        }
+
+        .btn-group {
+            padding: 12px 14px;
+            border-top: 1px solid #dde8f4;
+            text-align: right;
+        }
+    </style>  
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="block_header">
+                <div class="logo">
+                    <a href="application.html"><img
+                            src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                            alt="Alpha-Beta Coding and Programming School Logo" /></a>
+                    <div>
+                        <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                        <div class="brand-sub">Admissions Portal</div>
+                        <div class="brand-contact">
+                            Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                            Email: <a href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a>
+                            &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317">+234 704 236 6317</a>
+                            &nbsp;|&nbsp; Website: <a href="https://alpha-beta.org.ng/"
+                                target="_blank">alpha-beta.org.ng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:#f0f4f8;padding:0;">
+            <div class="body_resize">
+                <div class="left">
+                    <!-- Dashboard Content -->
+                    <div id="dashboard-content">
+                        <div class="left-header">
+                            <span>RETURNING APPLICANTS</span>
+                            <span class="no-print">
+                            </span>
+                        </div>
+
+                        <div class="user-info" id="userInfo">
+                            <div class="name" id="displayName">Loading...</div>
+                            <div class="reg-no">Reg. No.: <span id="displayRegNo">-</span></div>
+                            <div class="programme">Proposed Programme: <span id="displayProgramme">-</span></div>
+                        </div>
+
+                        <div class="notice-box">
+                            <strong>IMPORTANT NOTICE</strong><br />
+                            - Prospective candidates for the 2026/2027 undergraduate admissions are not required to
+                            visit
+                            any of our campuses for Post UTME screening exam. Screening for admission will be online and
+                            based on the VERIFIED JAMB scores and SSCE/WACE/GCE/NECO results supplied on the
+                            Undergraduate
+                            Admissions Portal during the screening application.<br />
+                            - Direct Entry candidates must forward their academic transcripts to the Registrar,
+                            Alpha-Beta
+                            Coding and Programming School before they can be considered for admission. Candidates using
+                            IJMB or A'Level results must also submit copies of their verified results to the Admissions
+                            Office on or before portal closure.
+                        </div>
+
+                        <div class="notice-box" style="background:#e8f5e9;border-left-color:#2e7d32;">
+                            <strong>PLEASE CLICK ON THE "PRINT APPLICATION FORM" BUTTON BELOW TO PRINT YOUR REGISTRATION
+                                FORM!!!</strong>
+                        </div>
+
+                        <div class="btn-group no-print">
+                            <button class="print-btn" onclick="printForm()">&#128424; Print Application Form</button>
+                            <button class="btn-back" onclick="signOut()">Sign Out</button>
+                        </div>
+                    </div>
+
+                    <!-- Print Container - Hidden normally, shown when printing -->
+                    <div id="print-container">
+                        <!-- School Header for Print -->
+                        <div class="print-school-header">
+                            <div class="logo-container">
+                                <img src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                                    alt="Alpha-Beta Coding and Programming School Logo" />
+                                <div>
+                                    <div class="school-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                                    <div class="school-sub">Admissions Portal</div>
+                                    <div class="school-address">No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo,
+                                        Nigeria</div>
+                                    <div class="school-address">Email: info@alpha-beta.org.ng | Phone: +234 704 236 6317
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="left-header" style="background:#1a3a6b;color:#f5c842;margin:0 0 10px 0;">
+                            <span>2026 UNDERGRADUATE ADMISSION SCREENING APPLICATION FORM (UTME)</span>
+                            
+                        </div>
+
+                        <div id="printContent">
+                            <!-- Content will be dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR - TASK MENU -->
+                <div class="side no-print">
+                    <div class="right">
+                        <h2>TASK MENU</h2>
+                        <div class="sidebar-menu">
+                            <ul>
+                                <li><a href="dashboard.html"><span class="icon"></span> Home</a></li>
+                                <li><a href="application_form_1.html"><span class="icon">&#9998;</span> Edit Basic
+                                        Information</a></li>
+                                <li><a href="application_form_2.html"><span class="icon">&#9998;</span> Edit Academic
+                                        Records</a></li>
+                                <li><a href="#" onclick="printForm(); return false;"><span class="icon">&#128424;</span>
+                                        Print Application Form</a></li>
+                                <li><a href="change-password.html"><span class="icon">&#128273;</span>
+                                        Change Password</a></li>
+                                <li><a href="#" onclick="signOut(); return false;" class="btn-signout"><span
+                                            class="icon"></span> Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+                <a href="https://alpha-beta.org.ng/" target="_blank">School Website</a> | <a
+                    href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
+
+        // Get user data from localStorage
+        function getUserData() {
+            try {
+                var data = JSON.parse(localStorage.getItem('alphabeta_current') || 'null');
+                if (!data) {
+                    // Try to get from applications array
+                    var apps = JSON.parse(localStorage.getItem('alphabeta_applications') || '[]');
+                    if (apps.length > 0) {
+                        var latest = apps[apps.length - 1];
+                        if (latest && latest.utme_reg_no) {
+                            localStorage.setItem('alphabeta_current', JSON.stringify(latest));
+                            return latest;
+                        }
+                    }
+                    return null;
+                }
+                return data;
+            } catch (e) {
+                return null;
+            }
+        }
+
+        var userData = getUserData();
+        var formData = userData ? userData.form : null;
+        var olevelData = userData ? userData.olevel : null;
+
+        // Display user info on dashboard
+        function displayUserInfo() {
+            if (!userData) {
+                document.getElementById('displayName').textContent = 'No user data found. Please register first.';
+                return;
+            }
+
+            var fullname = formData ? formData.fullname : userData.utme_reg_no;
+            document.getElementById('displayName').textContent = fullname.toUpperCase() || 'N/A';
+            document.getElementById('displayRegNo').textContent = userData.utme_reg_no || 'N/A';
+
+            var programme = formData ? formData.programme : 'Not set';
+            document.getElementById('displayProgramme').textContent = programme || 'Not set';
+        }
+
+        displayUserInfo();
+
+        // Print Form Function
+        function printForm() {
+            if (!userData || !formData) {
+                alert('No application data found. Please complete your registration first.');
+                return;
+            }
+
+            var content = generatePrintContent();
+            document.getElementById('printContent').innerHTML = content;
+
+            // Show print container, hide dashboard content
+            document.getElementById('print-container').style.display = 'block';
+            document.getElementById('dashboard-content').style.display = 'none';
+
+            // Trigger print
+            window.print();
+
+            // Restore view after print
+            setTimeout(function () {
+                document.getElementById('print-container').style.display = 'none';
+                document.getElementById('dashboard-content').style.display = 'block';
+            }, 500);
+        }
+
+        function generatePrintContent() {
+            var f = formData;
+            var o = olevelData;
+
+            // Get full name for title
+            var fullname = f.fullname ? f.fullname.toUpperCase() : 'N/A';
+            var regNo = userData.utme_reg_no || 'N/A';
+            var programme = f.programme || 'N/A';
+
+            // Personal Info
+            var sex = f.sex || 'N/A';
+            var lga = f.lga || 'N/A';
+            var stateOrigin = f.state_origin || 'N/A';
+            var nationality = f.nationality || 'N/A';
+            var marital = f.marital || 'N/A';
+            var age = f.age || 'N/A';
+            var dob = f.dob || 'N/A';
+            var nin = f.nin || 'N/A';
+
+            // Contact Info
+            var phone = f.phone || 'N/A';
+            var email = f.email || 'N/A';
+            var contactAddr = f.contact_addr || 'N/A';
+            var homeAddr = f.home_addr || 'N/A';
+
+            // Next of Kin
+            var kinName = f.kin_name || 'N/A';
+            var kinRel = f.kin_rel || 'N/A';
+            var kinPhone = f.kin_phone || 'N/A';
+            var kinEmail = f.kin_email || 'N/A';
+            var kinAddr = f.kin_addr || 'N/A';
+
+            // UTME Info
+            var utmeChoice = f.utme_choice || 'N/A';
+            var aggScore = f.agg_score || '0';
+            var subj2 = f.subj2 || 'N/A';
+            var subj3 = f.subj3 || 'N/A';
+            var subj4 = f.subj4 || 'N/A';
+            var score1 = f.utme_score1 || '0';
+            var score2 = f.utme_score2 || '0';
+            var score3 = f.utme_score3 || '0';
+            var score4 = f.utme_score4 || '0';
+
+            // O'Level Data
+            var sitting1 = o && o.sitting1 ? o.sitting1 : null;
+            var sitting2 = o && o.sitting2 ? o.sitting2 : null;
+            var numSitting = o ? o.num_sitting : '1';
+
+            // Build O'Level tables
+            function buildOlevelTable(sitting, title) {
+                if (!sitting || !sitting.subjects || sitting.subjects.length === 0) {
+                    return '<p style="padding:10px;color:#888;">No ' + title + ' data available.</p>';
+                }
+                var html = '<div class="olevel-block">';
+                html += '<div class="olevel-head">' + title + '</div>';
+                html += '<div class="olevel-meta">';
+                html += '<table><tr>';
+                html += '<td><label>Exam Type:</label></td><td>' + (sitting.exam_type || 'N/A') + '</td>';
+                html += '<td><label>Exam Year:</label></td><td>' + (sitting.exam_year || 'N/A') + '</td>';
+                html += '</tr><tr>';
+                html += '<td><label>Exam/Reg. No.:</label></td><td colspan="3">' + (sitting.reg_num || 'N/A') + '</td>';
+                html += '</tr></table></div>';
+                html += '<table class="grade-table"><thead><tr><th>S/N</th><th>SUBJECT</th><th>GRADE</th></tr></thead><tbody>';
+                sitting.subjects.forEach(function (row, idx) {
+                    var num = idx + 1;
+                    html += '<tr><td>' + num + '.</td><td>' + (row.subj || 'N/A') + '</td><td>' + (row.grade ||
+                        'N/A') + '</td></tr>';
+                });
+                html += '</tbody></table></div>';
+                return html;
+            }
+
+            var html = '';
+
+            // Personal Information Section
+            html += '<div class="sec-head">Personal Information</div>';
+            html += '<div class="form-wrap"><table class="form-table">';
+            html += '<tr><td class="lbl">UTME/DE REG. NO.:</td><td class="val">' + regNo + '</td></tr>';
+            html += '<tr><td class="lbl">NAME:</td><td class="val">' + fullname + '</td></tr>';
+            html += '<tr><td class="lbl">SEX:</td><td class="val">' + sex + '</td></tr>';
+            html += '<tr><td class="lbl">LOCAL GOVERNMENT:</td><td class="val">' + lga + '</td></tr>';
+            html += '<tr><td class="lbl">STATE OF ORIGIN:</td><td class="val">' + stateOrigin + '</td></tr>';
+            html += '<tr><td class="lbl">NATIONALITY:</td><td class="val">' + nationality + '</td></tr>';
+            html += '<tr><td class="lbl">MARITAL STATUS:</td><td class="val">' + marital + '</td></tr>';
+            html += '<tr><td class="lbl">AGE:</td><td class="val">' + age + '</td></tr>';
+            html += '<tr><td class="lbl">DATE OF BIRTH:</td><td class="val">' + dob + '</td></tr>';
+            html += '<tr><td class="lbl">NIN:</td><td class="val">' + nin + '</td></tr>';
+            html += '</table></div>';
+
+            // UTME Information
+            html += '<div class="sec-head">UTME Information</div>';
+            html += '<table class="utme-table"><thead><tr><th>S/N</th><th>UTME SUBJECT</th><th>SCORE</th></tr></thead><tbody>';
+            html += '<tr><td>1.</td><td><strong>English Language</strong></td><td>' + score1 + '</td></tr>';
+            html += '<tr><td>2.</td><td>' + subj2 + '</td><td>' + score2 + '</td></tr>';
+            html += '<tr><td>3.</td><td>' + subj3 + '</td><td>' + score3 + '</td></tr>';
+            html += '<tr><td>4.</td><td>' + subj4 + '</td><td>' + score4 + '</td></tr>';
+            html += '<tr class="agg-row"><td colspan="2" style="text-align:right;padding-right:12px;">Aggregate Score:</td><td><strong>' +
+                aggScore + '</strong></td></tr>';
+            html += '</tbody></table>';
+
+            html += '<div class="form-wrap"><table class="form-table">';
+            html += '<tr><td class="lbl">CHOICE:</td><td class="val">' + utmeChoice + '</td></tr>';
+            html += '<tr><td class="lbl">PROGRAMME:</td><td class="val">' + programme + '</td></tr>';
+            html += '</table></div>';
+
+            // Contact Information
+            html += '<div class="sec-head">Contact Information</div>';
+            html += '<div class="form-wrap"><table class="form-table">';
+            html += '<tr><td class="lbl">PHONE NUMBER:</td><td class="val">' + phone + '</td></tr>';
+            html += '<tr><td class="lbl">EMAIL ADDRESS:</td><td class="val">' + email + '</td></tr>';
+            html += '<tr><td class="lbl">CONTACT ADDRESS:</td><td class="val">' + contactAddr + '</td></tr>';
+            html += '<tr><td class="lbl">HOME ADDRESS:</td><td class="val">' + homeAddr + '</td></tr>';
+            html += '</table></div>';
+
+            // Next of Kin
+            html += '<div class="sec-head">Next of Kin Information</div>';
+            html += '<div class="form-wrap"><table class="form-table">';
+            html += '<tr><td class="lbl">NEXT OF KIN NAME:</td><td class="val">' + kinName + '</td></tr>';
+            html += '<tr><td class="lbl">RELATIONSHIP:</td><td class="val">' + kinRel + '</td></tr>';
+            html += '<tr><td class="lbl">PHONE NUMBER:</td><td class="val">' + kinPhone + '</td></tr>';
+            html += '<tr><td class="lbl">EMAIL ADDRESS:</td><td class="val">' + kinEmail + '</td></tr>';
+            html += '<tr><td class="lbl">CONTACT ADDRESS:</td><td class="val">' + kinAddr + '</td></tr>';
+            html += '</table></div>';
+
+            // Academic Records - O'Level
+            html += '<div class="sec-head">Academic Records</div>';
+            html += '<div class="form-wrap"><table class="form-table">';
+            html += '<tr><td class="lbl">No. of O\'Level Sittings:</td><td class="val">' + numSitting + ' Sitting' +
+                (numSitting > 1 ? 's' : '') + '</td></tr>';
+            html += '</table></div>';
+
+            if (sitting1) {
+                html += buildOlevelTable(sitting1, 'First Sitting');
+            }
+
+            if (sitting2 && numSitting === '2') {
+                html += buildOlevelTable(sitting2, 'Second Sitting');
+            }
+
+            // Footer note
+            var now = new Date();
+            var dateStr = now.toLocaleString();
+            html += '<div style="padding:12px 14px;border-top:1px solid #dde8f4;font-size:11px;color:#666;">';
+            html += '<strong>IMPORTANT NOTICE</strong><br />';
+            html += '&diams; Prospective candidates for the 2026/2027 undergraduate admissions are not required to visit any of our campuses for Post UTME screening exam. Screening for admission will be online and based on the VERIFIED JAMB scores and SSCE/WAEC/GCE/NECO results supplied on the Undergraduate Admissions Portal during the screening application.<br />';
+            html += '&diams; Direct Entry candidates must forward their academic transcripts to the Registrar, Alpha-Beta Coding and Programming School before they can be considered for admission. Candidates using IJMB or A\'Level results must also submit copies of their verified results to the Admissions Office on or before portal closure.';
+            html += '</div>';
+
+            html += '<div style="padding:10px 14px;border-top:1px solid #dde8f4;font-size:11px;color:#888;text-align:right;">';
+            html += 'Printed ' + dateStr;
+            html += '</div>';
+
+            return html;
+        }
+
+        function changePassword() {
+            var newPw = prompt('Enter new password (minimum 6 characters):');
+            if (newPw && newPw.length >= 6) {
+                if (userData) {
+                    userData.password = newPw;
+                    localStorage.setItem('alphabeta_current', JSON.stringify(userData));
+
+                    // Update in applications array
+                    try {
+                        var apps = JSON.parse(localStorage.getItem('alphabeta_applications') || '[]');
+                        for (var i = 0; i < apps.length; i++) {
+                            if (apps[i].utme_reg_no === userData.utme_reg_no) {
+                                apps[i].password = newPw;
+                                break;
+                            }
+                        }
+                        localStorage.setItem('alphabeta_applications', JSON.stringify(apps));
+                    } catch (e) { }
+
+                    alert('Password updated successfully!');
+                }
+            } else if (newPw !== null) {
+                alert('Password must be at least 6 characters.');
+            }
+        }
+
+        function signOut() {
+            if (confirm('Are you sure you want to sign out?')) {
+                localStorage.setItem('setUpPageStatus', '0');
+                localStorage.removeItem('alphabeta_current');
+                window.location.href = 'application.html';
+            }
+        }
+
+        // Check if user is logged in
+        window.onload = function () {
+            if (!userData) {
+                alert('Please register first.');
+                window.location.href = 'application.html';
+                return;
+            }
+            if (!userData.form_complete) {
+                alert('Please complete your registration first.');
+                window.location.href = 'application_form_1.html';
+                return;
+            }
+            if (!userData.olevel_complete) {
+                alert('Please complete your academic records first.');
+                window.location.href = 'application_form_2.html';
+                return;
+            }
+        };
+    </script>
+</body>
+
+</html>

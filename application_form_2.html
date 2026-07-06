@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Alpha-Beta Coding School :: Application Form Step 2</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            background: #f0f4f8;
+            color: #222;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: #f0f4f8;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 60%, #0d1f3c 100%);
+            border-bottom: 4px solid #c8960c;
+        }
+
+        .block_header {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .logo {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            max-width: 80px;
+            height: auto;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .logo .brand-name {
+            color: #f5c842;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo .brand-sub {
+            color: #cfe0f4;
+            font-size: 12px;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .logo .brand-contact {
+            color: #cfe0f4;
+            font-size: 11.5px;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .logo .brand-contact a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .body_resize {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 10px 30px 10px;
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+
+        .left {
+            flex: 1 1 0%;
+            min-width: 0;
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #1a3a6b;
+        }
+
+        .left-header {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #c8960c;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .side {
+            width: 260px;
+            flex-shrink: 0;
+        }
+
+        .right {
+            background: #fff;
+            border: 1px solid #b8cce4;
+            border-top: 3px solid #c8960c;
+        }
+
+        .right h2 {
+            background: #c8960c;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-bottom: 2px solid #1a3a6b;
+        }
+
+        .right p {
+            padding: 8px 12px 4px 12px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .right p strong {
+            color: #1a3a6b;
+        }
+
+        .bg {
+            height: 1px;
+            background: #dde8f4;
+            margin: 2px 12px;
+        }
+
+        .info-messages {
+            color: #c00;
+        }
+
+        .footer {
+            background: #0d1f3c;
+            border-top: 3px solid #c8960c;
+            padding: 10px 0;
+            text-align: center;
+            color: #a0b8d8;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #f5c842;
+            text-decoration: none;
+        }
+
+        .clr {
+            clear: both;
+        }
+
+        .sec-head {
+            background: #c8960c;
+            color: #fff;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 6px 14px;
+            margin: 16px 14px 0 14px;
+        }
+
+        .form-wrap {
+            padding: 10px 14px 4px 14px;
+        }
+
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .form-table td {
+            padding: 6px;
+            vertical-align: middle;
+        }
+
+        .form-table td.lbl {
+            text-align: right;
+            font-weight: bold;
+            color: #1a3a6b;
+            width: 160px;
+            font-size: 13px;
+        }
+
+        .finput {
+            border: 1px solid #7a9cc6;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .finput:focus {
+            border-color: #c8960c;
+        }
+
+        .finput-md {
+            width: 220px;
+        }
+
+        .finput-pw {
+            width: 240px;
+        }
+
+        .err-msg {
+            background: #ffebee;
+            border: 1px solid #c62828;
+            color: #b71c1c;
+            padding: 8px 14px;
+            margin: 10px 14px;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .suc-msg {
+            background: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 8px 14px;
+            margin: 10px 14px;
+            border-radius: 2px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .submit-bar {
+            padding: 16px 14px;
+            border-top: 1px solid #dde8f4;
+            text-align: right;
+        }
+
+        .btn-submit {
+            background: #1a3a6b;
+            color: #f5c842;
+            border: none;
+            padding: 8px 30px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .btn-submit:hover {
+            background: #c8960c;
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #888;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-right: 10px;
+        }
+
+        .btn-back:hover {
+            background: #555;
+        }
+
+        .sitting-select {
+            padding: 6px 8px;
+            border: 1px solid #7a9cc6;
+            border-radius: 2px;
+            font-size: 13px;
+            background: #fff;
+        }
+
+        .olevel-block {
+            margin: 10px 14px 6px 14px;
+            border: 1px solid #b8cce4;
+            background: #f7fafd;
+            border-radius: 2px;
+            display: none;
+        }
+
+        .olevel-block .olevel-head {
+            background: #1a3a6b;
+            color: #f5c842;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 6px 12px;
+        }
+
+        .olevel-meta {
+            padding: 10px 12px 6px 12px;
+        }
+
+        .olevel-meta table td {
+            padding: 5px 8px;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        .olevel-meta table td label {
+            font-weight: bold;
+            color: #1a3a6b;
+        }
+
+        .olevel-meta select,
+        .olevel-meta input {
+            border: 1px solid #7a9cc6;
+            padding: 4px 6px;
+            font-size: 13px;
+            color: #222;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .olevel-meta select:focus,
+        .olevel-meta input:focus {
+            border-color: #c8960c;
+        }
+
+        .grade-table {
+            width: 96%;
+            margin: 8px auto 10px auto;
+            border-collapse: collapse;
+        }
+
+        .grade-table th {
+            background: #1a3a6b;
+            color: #f5c842;
+            padding: 6px 8px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .grade-table th:first-child {
+            background: #c8960c;
+        }
+
+        .grade-table td {
+            padding: 5px 6px;
+            border-bottom: 1px solid #dde8f4;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .grade-table td:first-child {
+            font-weight: bold;
+            color: #1a3a6b;
+            background: #eef2f8;
+        }
+
+        .grade-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .grade-table select {
+            border: 1px solid #7a9cc6;
+            padding: 3px 4px;
+            font-size: 12px;
+            border-radius: 2px;
+            outline: none;
+            min-width: 160px;
+        }
+
+        .grade-table select:focus {
+            border-color: #c8960c;
+        }
+
+        .grade-table select.grade-sel {
+            min-width: 80px;
+        }
+
+        .req {
+            color: #c00;
+            font-weight: bold;
+        }
+
+        .pw-note {
+            color: #444;
+            font-size: 12px;
+            line-height: 1.6;
+            padding: 6px 0 0 0;
+        }
+
+        .readonly-field {
+            background: #eef2f8;
+            border: 1px solid #b8cce4;
+            padding: 4px 7px;
+            font-size: 13px;
+            color: #1a3a6b;
+            font-weight: bold;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .sitting-prompt {
+            padding: 15px 14px;
+            text-align: center;
+            color: #1a3a6b;
+            font-style: italic;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="block_header">
+                <div class="logo">
+                    <a href="application.html"><img
+                            src="https://i.postimg.cc/zvt8wsgk/Whats-App-Image-2026-06-28-at-5-16-08-PM-(1).jpg"
+                            alt="Alpha-Beta Coding and Programming School Logo" /></a>
+                    <div>
+                        <div class="brand-name">ALPHA-BETA CODING AND PROGRAMMING SCHOOL</div>
+                        <div class="brand-sub">Admissions Portal</div>
+                        <div class="brand-contact">
+                            Address: No. 6, Ifesowapo Street, Agunbelewo Area, Osogbo, Nigeria<br />
+                            Email: <a href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a>
+                            &nbsp;|&nbsp; Phone: <a href="tel:+2347042366317">+234 704 236 6317</a>
+                            &nbsp;|&nbsp; Website: <a href="https://alpha-beta.org.ng/"
+                                target="_blank">alpha-beta.org.ng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:#f0f4f8;padding:0;">
+            <div class="body_resize">
+                <div class="left">
+                    <div class="left-header">
+                        STEP 2 OF 2 
+                    </div>
+ 
+
+                    <div id="err-msg" class="err-msg"></div>
+                    <div id="suc-msg" class="suc-msg"></div>
+
+                    <!-- Password Section -->
+                    <div class="sec-head">Portal Password</div>
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">Password:</td>
+                                <td>
+                                    <input type="password" id="password" class="finput finput-pw"
+                                        placeholder="Minimum 6 characters" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="lbl">Confirm Password:</td>
+                                <td><input type="password" id="confirm_password" class="finput finput-pw"
+                                        placeholder="Re-enter password" /></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <p class="pw-note">&#9432; This password will be used to log into your portal
+                                        dashboard. Keep it safe.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- O'Level Sittings -->
+                    <div class="sec-head">Academic Records</div>
+
+                    <div class="form-wrap">
+                        <table class="form-table">
+                            <tr>
+                                <td class="lbl">No. of Sittings:</td>
+                                <td>
+                                    <select id="num_sitting" class="sitting-select" onchange="handleSittingChange()">
+                                        <option value="">-- Select Sitting --</option>
+                                        <option value="1">1 Sitting</option>
+                                        <option value="2">2 Sittings</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Prompt message when no sitting selected -->
+                    <div class="sitting-prompt" id="sitting-prompt">
+                        <p style="color:#1a3a6b;font-size:14px;"></p>
+                    </div>
+
+                    <!-- First Sitting -->
+                    <div class="olevel-block" id="sitting1-block">
+                        <div class="olevel-head">First Sitting</div>
+                        <div class="olevel-meta">
+                            <table>
+                                <tr>
+                                    <td><label>Exam Type:</label></td>
+                                    <td>
+                                        <select id="exam_type1">
+                                            <option value="">-- Examination Type --</option>
+                                            <option>MAY/JUNE WAEC SSCE</option>
+                                            <option>NOV/DEC WAEC SSCE</option>
+                                            <option>JUNE/JULY NECO SSCE</option>
+                                            <option>NOV/DEC NECO SSCE</option>
+                                            <option>NABTEB MAY/JUNE</option>
+                                            <option>NABTEB NOV/DEC</option>
+                                            <option>JAN/FEB WAEC SSCE</option>
+                                        </select>
+                                    </td>
+                                    <td><label>Exam Year:</label></td>
+                                    <td><select id="exam_year1"></select></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Exam/Reg. No.:</label></td>
+                                    <td colspan="3"><input type="text" id="reg_num1" style="width:200px;"
+                                            placeholder="" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table class="grade-table">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>SUBJECT</th>
+                                    <th>GRADE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sitting1-rows"></tbody>
+                        </table>
+                    </div>
+
+                    <!-- Second Sitting (hidden by default) -->
+                    <div class="olevel-block" id="sitting2-block">
+                        <div class="olevel-head">Second Sitting</div>
+                        <div class="olevel-meta">
+                            <table>
+                                <tr>
+                                    <td><label>Exam Type:</label></td>
+                                    <td>
+                                        <select id="exam_type2">
+                                            <option value="">-- Examination Type --</option>
+                                            <option>MAY/JUNE WAEC SSCE</option>
+                                            <option>NOV/DEC WAEC SSCE</option>
+                                            <option>JUNE/JULY NECO SSCE</option>
+                                            <option>NOV/DEC NECO SSCE</option>
+                                            <option>NABTEB MAY/JUNE</option>
+                                            <option>NABTEB NOV/DEC</option>
+                                            <option>JAN/FEB WAEC SSCE</option>
+                                        </select>
+                                    </td>
+                                    <td><label>Exam Year:</label></td>
+                                    <td><select id="exam_year2"></select></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Exam/Reg. No.:</label></td>
+                                    <td colspan="3"><input type="text" id="reg_num2" style="width:200px;"
+                                            placeholder="" /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table class="grade-table">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>SUBJECT</th>
+                                    <th>GRADE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sitting2-rows"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="submit-bar">
+                        <button class="btn-submit" onclick="submitForm()">Submit Application</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT SIDEBAR -->
+                <div class="side">
+                    <div class="right">
+                        <h2>REGISTRATION GUIDE</h2>
+                        <p><strong>NOTE:</strong><br />If you run into any hitch, please send an email to <span
+                                class="info-messages"><a
+                                    href="mailto:info@alpha-beta.org.ng">info@alpha-beta.org.ng</a></span>
+                            or call: <strong>+234 704 236 6317</strong></p>
+                        <div class="bg"></div>
+                        <p><strong>O'Level Results:</strong><br />Select 1 sitting if all your required subjects are
+                            from one exam sitting. Select 2 sittings if you need subjects from two different sittings.
+                        </p>
+                        <div class="bg"></div>
+                        <p><strong>Password:</strong><br />Set a secure password for your portal login. You will use
+                            your UTME Reg. No. and this password to log in.</p>
+                        <div class="bg"></div>
+                        <p><strong>Grades:</strong><br />AR means "Awaiting Result". Select the correct grade for each
+                            subject.</p>
+                        <p><strong><span class="info-messages">PLEASE NOTE: Modification will NOT be possible after
+                                    submission.</span></strong></p>
+                    </div>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>&copy; <span id="yr"></span> Alpha-Beta Coding and Programming School. All Rights Reserved<br />
+                <a href="https://alpha-beta.org.ng/" target="_blank">School Website</a> | <a
+                    href="mailto:info@alpha-beta.org.ng">Help Desk</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
+
+        var OLEVEL_SUBJECTS = [
+            '-- O\'Level Subject --',
+            'Agricultural Science', 'Animal Husbandry', 'Arabic', 'Biology',
+            'Book Keeping', 'Building Construction', 'Business Management',
+            'Christian Religious Studies', 'Catering Craft Practice', 'Chemistry',
+            'Civic Education', 'Commerce', 'Computer Studies', 'Data Processing',
+            'Economics', 'Electrical Installation and Maintenance Work', 'Electronics',
+            'English Language', 'Financial Accounts', 'Fine Arts', 'Fisheries',
+            'Foods and Nutrition', 'French', 'Further Mathematics', 'Geography',
+            'Government', 'Hausa', 'Health Education', 'History',
+            'Home Management', 'Islamic Religious Studies', 'Igbo', 'Insurance',
+            'Integrated Science', 'Land Surveying', 'Literature-in-English',
+            'Marketing', 'Mathematics', 'Metalwork', 'Music',
+            'Office Practice', 'Physical Education', 'Physics',
+            'Principles of Cost Accounting', 'Social Studies', 'Store Management',
+            'Technical Drawing', 'Tourism', 'Visual Art', 'Woodwork', 'Yoruba'
+        ];
+        var GRADES = ['-- Grade --', 'A1', 'A2', 'B2', 'A3', 'B3', 'C4', 'C5', 'C6', 'D7', 'E8', 'F9', 'AR'];
+
+        function makeSubjSel(prefix, idx) {
+            var sel = document.createElement('select');
+            sel.id = prefix + '_subj' + idx;
+            sel.className = '';
+            OLEVEL_SUBJECTS.forEach(function (s, i) {
+                var o = document.createElement('option');
+                o.value = i === 0 ? '' : s;
+                o.textContent = s;
+                sel.appendChild(o);
+            });
+            return sel;
+        }
+
+        function makeGradeSel(prefix, idx) {
+            var sel = document.createElement('select');
+            sel.id = prefix + '_grade' + idx;
+            sel.className = 'grade-sel';
+            GRADES.forEach(function (g, i) {
+                var o = document.createElement('option');
+                o.value = i === 0 ? '' : g;
+                o.textContent = g;
+                sel.appendChild(o);
+            });
+            return sel;
+        }
+
+        function buildRows(tbodyId, prefix, count) {
+            var tb = document.getElementById(tbodyId);
+            if (!tb) return;
+            tb.innerHTML = '';
+            for (var i = 1; i <= count; i++) {
+                var tr = document.createElement('tr');
+                var td1 = document.createElement('td');
+                td1.textContent = i + '.';
+                tr.appendChild(td1);
+                var td2 = document.createElement('td');
+                td2.appendChild(makeSubjSel(prefix, i));
+                if (i <= 5) {
+                    var sp = document.createElement('span');
+                    sp.className = 'req';
+                    sp.textContent = ' *';
+                    td2.appendChild(sp);
+                }
+                tr.appendChild(td2);
+                var td3 = document.createElement('td');
+                td3.appendChild(makeGradeSel(prefix, i));
+                if (i <= 5) {
+                    var sp2 = document.createElement('span');
+                    sp2.className = 'req';
+                    sp2.textContent = ' *';
+                    td3.appendChild(sp2);
+                }
+                tr.appendChild(td3);
+                tb.appendChild(tr);
+            }
+        }
+
+        function populateYearSel(id) {
+            var sel = document.getElementById(id);
+            if (!sel) return;
+            sel.innerHTML = '<option value="">-- Examination Year --</option>';
+            for (var y = 2026; y >= 1990; y--) {
+                var o = document.createElement('option');
+                o.value = y;
+                o.textContent = y;
+                sel.appendChild(o);
+            }
+        }
+
+        function handleSittingChange() {
+            var v = document.getElementById('num_sitting').value;
+            var prompt = document.getElementById('sitting-prompt');
+            var block1 = document.getElementById('sitting1-block');
+            var block2 = document.getElementById('sitting2-block');
+
+            // Hide all blocks and prompt first
+            block1.style.display = 'none';
+            block2.style.display = 'none';
+            prompt.style.display = 'none';
+
+            if (v === '1') {
+                block1.style.display = 'block';
+                // Build rows if not already built
+                if (document.getElementById('sitting1-rows').children.length === 0) {
+                    buildRows('sitting1-rows', 's1', 9);
+                }
+            } else if (v === '2') {
+                block1.style.display = 'block';
+                block2.style.display = 'block';
+                if (document.getElementById('sitting1-rows').children.length === 0) {
+                    buildRows('sitting1-rows', 's1', 9);
+                }
+                if (document.getElementById('sitting2-rows').children.length === 0) {
+                    buildRows('sitting2-rows', 's2', 9);
+                }
+            } else {
+                // No selection - show prompt
+                prompt.style.display = 'block';
+            }
+        }
+
+        function gvSel(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+        function gvInp(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+        function getOlevelData(prefix, sitting_num) {
+            var rows = [];
+            for (var i = 1; i <= 9; i++) {
+                var subj = gvSel(prefix + '_subj' + i);
+                var grade = gvSel(prefix + '_grade' + i);
+                if (subj) rows.push({ subj: subj, grade: grade });
+            }
+            return {
+                exam_type: gvSel('exam_type' + sitting_num),
+                exam_year: gvSel('exam_year' + sitting_num),
+                reg_num: gvInp('reg_num' + sitting_num),
+                subjects: rows
+            };
+        }
+
+        function showErr(msg) { var e = document.getElementById('err-msg'); e.innerHTML = msg; e.style.display = 'block';
+            window.scrollTo(0, e.offsetTop - 20); }
+
+        function hideErr() { document.getElementById('err-msg').style.display = 'none'; }
+
+        function showSuc(msg) { var e = document.getElementById('suc-msg'); e.innerHTML = msg; e.style.display = 'block'; }
+
+        function submitForm() {
+            hideErr();
+            var errs = [];
+
+            // Check if sitting is selected
+            var numSit = document.getElementById('num_sitting').value;
+            if (!numSit) {
+                errs.push('Please select the number of O\'Level sittings.');
+                showErr('<b>Please fix the following errors:</b><ul style="margin:6px 0 0 16px;">' + errs.map(function (
+                    e) { return '<li>' + e + '</li>'; }).join('') + '</ul>');
+                return;
+            }
+
+            // Password validation
+            var pw = document.getElementById('password').value;
+            var cpw = document.getElementById('confirm_password').value;
+            if (!pw || pw.length < 6) errs.push('Password must be at least 6 characters.');
+            if (pw !== cpw) errs.push('Passwords do not match.');
+
+            // First sitting validation
+            var et1 = gvSel('exam_type1');
+            var ey1 = gvSel('exam_year1');
+            var rn1 = gvInp('reg_num1');
+            if (!et1) errs.push('First Sitting: Exam Type is required.');
+            if (!ey1) errs.push('First Sitting: Exam Year is required.');
+            if (!rn1) errs.push('First Sitting: Exam/Reg. Number is required.');
+
+            // First 5 subjects required for first sitting
+            for (var i = 1; i <= 5; i++) {
+                if (!gvSel('s1_subj' + i)) errs.push('First Sitting: Subject ' + i + ' is required.');
+                if (!gvSel('s1_grade' + i)) errs.push('First Sitting: Grade for Subject ' + i + ' is required.');
+            }
+
+            // Second sitting (if selected)
+            if (numSit === '2') {
+                var et2 = gvSel('exam_type2');
+                var ey2 = gvSel('exam_year2');
+                var rn2 = gvInp('reg_num2');
+                if (!et2) errs.push('Second Sitting: Exam Type is required.');
+                if (!ey2) errs.push('Second Sitting: Exam Year is required.');
+                if (!rn2) errs.push('Second Sitting: Exam/Reg. Number is required.');
+                for (var j = 1; j <= 5; j++) {
+                    if (!gvSel('s2_subj' + j)) errs.push('Second Sitting: Subject ' + j + ' is required.');
+                    if (!gvSel('s2_grade' + j)) errs.push('Second Sitting: Grade for Subject ' + j + ' is required.');
+                }
+            }
+
+            if (errs.length > 0) {
+                showErr('<b>Please fix the following errors:</b><ul style="margin:6px 0 0 16px;">' + errs.map(function (
+                    e) { return '<li>' + e + '</li>'; }).join('') + '</ul>');
+                return;
+            }
+
+            // Save everything using the same localStorage key as Form 1: 'alphabeta_current'
+            var cur = null;
+            try { cur = JSON.parse(localStorage.getItem('alphabeta_current') || 'null'); } catch (e) {}
+            if (!cur) { window.location = 'application.html'; return; }
+
+            // Merge with existing data from form 1
+            cur.password = pw;
+            cur.olevel = {
+                num_sitting: numSit,
+                sitting1: getOlevelData('s1', 1)
+            };
+            if (numSit === '2') {
+                cur.olevel.sitting2 = getOlevelData('s2', 2);
+            }
+            cur.olevel_complete = true;
+            cur.completed = true;
+
+            localStorage.setItem('alphabeta_current', JSON.stringify(cur));
+
+            // Update applications array
+            try {
+                var apps = JSON.parse(localStorage.getItem('alphabeta_applications') || '[]');
+                for (var k = 0; k < apps.length; k++) {
+                    if (apps[k].utme_reg_no === cur.utme_reg_no) {
+                        apps[k] = Object.assign(apps[k], cur);
+                        break;
+                    }
+                }
+                localStorage.setItem('alphabeta_applications', JSON.stringify(apps));
+            } catch (e) {}
+
+            // Mark fully complete
+            localStorage.setItem('setUpPageStatus', '3');
+
+            showSuc('&#10004; Registration complete! Redirecting to your dashboard...');
+            setTimeout(function () { window.location = 'dashboard.html'; }, 1800);
+        }
+
+        // Restore saved data
+        function restoreOlevel(data, prefix, sittingNum) {
+            if (!data) return;
+            if (data.exam_type) { var s = document.getElementById('exam_type' + sittingNum); if (s) s.value = data
+                    .exam_type; }
+            if (data.exam_year) { var s = document.getElementById('exam_year' + sittingNum); if (s) s.value = data
+                    .exam_year; }
+            if (data.reg_num) { var s = document.getElementById('reg_num' + sittingNum); if (s) s.value = data.reg_num; }
+            if (data.subjects) {
+                data.subjects.forEach(function (row, idx) {
+                    var si = document.getElementById(prefix + '_subj' + (idx + 1));
+                    var gi = document.getElementById(prefix + '_grade' + (idx + 1));
+                    if (si) si.value = row.subj;
+                    if (gi) gi.value = row.grade;
+                });
+            }
+        }
+
+        window.onload = function () {
+            var st = parseInt(localStorage.getItem('setUpPageStatus') || '0');
+            if (st < 2) { window.location = 'payment.html'; return; }
+            if (st >= 3) { window.location = 'dashboard.html'; return; }
+
+            // Get data from the same key: 'alphabeta_current'
+            var cur = null;
+            try { cur = JSON.parse(localStorage.getItem('alphabeta_current') || 'null'); } catch (e) {}
+            if (!cur || !cur.form_complete) { window.location = 'application_form_1.html'; return; }
+
+            // Display UTME Reg No.
+            var dispReg = document.getElementById('disp_reg');
+            if (dispReg) {
+                dispReg.textContent = cur.utme_reg_no || 'N/A';
+            }
+
+            populateYearSel('exam_year1');
+            populateYearSel('exam_year2');
+
+            // Restore saved olevel data
+            if (cur.olevel) {
+                if (cur.olevel.num_sitting) {
+                    document.getElementById('num_sitting').value = cur.olevel.num_sitting;
+                    handleSittingChange();
+                    restoreOlevel(cur.olevel.sitting1, 's1', 1);
+                    if (cur.olevel.sitting2) restoreOlevel(cur.olevel.sitting2, 's2', 2);
+                } else {
+                    // Show prompt if no sitting selected
+                    document.getElementById('sitting-prompt').style.display = 'block';
+                }
+            } else {
+                // Show prompt if no data
+                document.getElementById('sitting-prompt').style.display = 'block';
+            }
+        };
+    </script>
+</body>
+
+</html>
